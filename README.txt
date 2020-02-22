@@ -1,0 +1,20 @@
+CUNE CRISTIAN 
+
+
+Definim tipul Tinfo ce reprezinta informatia din nodurile arborilor drept siruri de caractere.Definim si inf ce va fi un numar foarte mare ca rol de infinit pe care il va returna functia ce calculeaza valoarea unei expresii.Definim tipul TNod cu pointer-ul TArb si adresa AArb.
+
+In functia ConstrFr vom construi o frunza ce urmeaza a fi legat la un arbore.Alocam spatiu pentru frunza si pentru sirul de caractere din campul informatiei.Copiem informatia x data ca parametru.Punem fiul stang si drept pe NULL si return frunza a. 
+
+Functia DistrugeArb va elibera in mod recursiv informatia din fiecare nod al arborelui precum si spatiul alocat pentru noduri dupa care va pune NULL pe a.
+
+Functia ConstrArb va construi un arbore de expresie la adresa a. In parametrul x va fi la inceput informatia din radacina arborelui.Vom construi o frunza noua cu informatia x.Conditia de iesire din recursivitate este sa se ajunga la sfarsitul expresiei adica strtok sa returneze NULL.O alta conditie de iesire este sa verificam daca nodul alocat este o frunza adica sa nu contina niciunul din operanzii +,-,*,/,^,sqrt.Tratam cazul in care va trebui ca nodul ce contine sqrt sa aiba un singur fiu dupa care construim subarborele stang si pe cel drept in mod recursiv si vom trece la informatia urmatoare apeland strtokca parametru la pelarea recursiva a functiei dupa care iesim din functie.
+
+Functia verif_variabila va verifica daca exista o variabila nedeclarat in arborele a (adica daca exista o variabila in arbore ce nu se afla in vectorul ce contine numele variabilelor declarate).Cu parametrul ok ne vom asigura ca intra o singura data in functie.In cazul in care ajungem pe NULL iesim din recursivitate apoi verificam daca informatia din nodul curent se afla intr-o frunza,daca este cifra sau nu si daca variabila din informatie se afla in vectorul de variabile folosind functia verif care retunrneaza 1 daca variabila este in vector si 0 altfel.Parametrl n reprezinta lungimea vectoruli de variabile .Afisam mesajul de eroare in fisier , variabila ok va deveni 1 (adica exista o variabila nedeclarata) si intoarcem 0.Vom cauta o astfel de variabila in restul nodurilor din subarborii fii.
+
+In functia evaluare_arbore vom calcula valoarea expresiei din arbore.Daca ajungem pe NULL vom returna inf adica iesim din recursiviate.Vom verifica pentru fiecare frunza daca informatia este o variabila sau un numar si vom intoarce fiecare informatie (daca este variabila ,o vom cauta in vectorul de variabile si returnam valoarea din vectorul ce contine valoarea int a variabilei respective de pe pozitia gasita).Vom calcula recursiv fiul stang si fiul drept si vom  returna rezultatul operatiei cerute .Ne asiguram si ca nu efectuam operatii invalide folosind variabila ok ce va fi 0 la inceput si va deveni 1 daca se efectueaza o astfel de operatie.Cand iesim din recursivitate returnam inf prin conventie.
+
+In main vom deschide fisierele de citire si scriere si verificam daca s-au deschis corespunzator.Vom citi fiecare rand din fisier cu functia getline .Vom stoca in variabila buffer fiecare linie .Citim numarul de variabile si il convertim la int si declaram 2 vetori : unul cu siruri de caractere si unul cu intregi.In primul vom stoca numele fiecarei variabile si in al doilea vom stoca valorile intregi ale variabilelor deci variabilei var[i] ii va corespunde val[i] oricare ar fi i de la 1 la n.Citim numarul de operatii tot cu getline dupa care vom forma cei nr_op arbori.Initializam variabilele ok1 si ok2 cu 0 (vor fi 0 daca nu exista variabile nedeclarate,respectiv operatii invalide si 1 altfel).Construim arborele cu functia ConstrArb si verificam daca avem variabile nedeclarate adica ok1==1.Daca avem variabile nedeclarate distrugem arborele si trecem la urmatorul.Stocam in x rezultatul arborelui de expresie obtinut cu functia evaluare_arbore si il vom afisa doar daca este diferit de inf si daca ok2==0 (nu avem operatii invalide) , dupa care distrugem arborele.Eliberam buffer-ul,inchidem fisierele si iesim din program.
+
+
+
+
